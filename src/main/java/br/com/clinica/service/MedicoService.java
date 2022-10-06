@@ -1,5 +1,6 @@
 package br.com.clinica.service;
 
+import br.com.clinica.exeption.MedicoNaoEncontradoException;
 import br.com.clinica.model.Medico;
 import br.com.clinica.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class MedicoService {
             repository.save(medicoDb);
 
         } else {
-            System.out.println("médico não encontrado");
+            throw new MedicoNaoEncontradoException();
         }
 
     }
