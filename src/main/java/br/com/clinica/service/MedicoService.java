@@ -1,11 +1,13 @@
 package br.com.clinica.service;
 
 import br.com.clinica.exeption.MedicoNaoEncontradoException;
-import br.com.clinica.model.Medico;
+import br.com.clinica.entity.Medico;
+import br.com.clinica.http.domain.MedicoResponse;
 import br.com.clinica.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,12 +20,37 @@ public class MedicoService {
         repository.save(medico);
     }
 
-    public List<Medico> findAll() {
-        return repository.findAll();
+    public List<MedicoResponse> findAll() {
+        List<Medico> entity = repository.findAll();
+        List<MedicoResponse> response = new ArrayList<>();
+
+        for (Medico e : entity) {
+            MedicoResponse medico = new MedicoResponse();
+            medico.setCrm(e.getCrm());
+            medico.setEspecialidade(e.getEspecialidade());
+            medico.setNome(e.getNome());
+            medico.setDdd(e.getDdd());
+            medico.setNumero(e.getNumero());
+            response.add(medico);
+        }
+
+        return response;
     }
 
-    public Medico findById(Long id) {
-        return repository.findById(id).get();
+    public MedicoResponse findById(Long id) {
+        Optional<Medico> entity = repository.findById(id);
+        if (entity.isPresent()) {
+            Medico e = entity.get();
+            MedicoResponse medico = new MedicoResponse();
+            medico.setCrm(e.getCrm());
+            medico.setEspecialidade(e.getEspecialidade());
+            medico.setNome(e.getNome());
+            medico.setDdd(e.getDdd());
+            medico.setNumero(e.getNumero());
+            return medico;
+        } else {
+            throw new MedicoNaoEncontradoException();
+        }
     }
 
     public void deleteById(Long id) {

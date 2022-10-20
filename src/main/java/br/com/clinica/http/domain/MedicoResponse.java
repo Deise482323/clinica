@@ -1,21 +1,19 @@
-package br.com.clinica.entity;
+package br.com.clinica.http.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Data //medtodos da classe
-@Entity //base de dados
 @Builder //medtodos da classe
 @AllArgsConstructor //medtodos da classe
 @NoArgsConstructor //medtodos da classe
-@Table(name = "TB_MEDICO")
-public class Medico implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
+
+public class MedicoResponse {
 
     private String crm;
     private String nome;

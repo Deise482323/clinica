@@ -1,6 +1,7 @@
-package br.com.clinica.controller;
+package br.com.clinica.http.v1;
 
-import br.com.clinica.model.Medico;
+import br.com.clinica.entity.Medico;
+import br.com.clinica.http.domain.MedicoResponse;
 import br.com.clinica.service.MedicoService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -29,14 +30,14 @@ public class MedicoController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Medico> findAll() {
+    public List<MedicoResponse> findAll() {
         return service.findAll();
     }
 
 
     @GetMapping("/por-id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Medico findById(@RequestParam("id") Long id) {
+    public MedicoResponse findById(@RequestParam("id") Long id) {
         return service.findById(id);
     }
 
