@@ -14,11 +14,11 @@ public class FuncionarioRepositoryImpl {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void salvar(Funcionario funcionario){
+    public void salvar(Funcionario funcionario) {
         //escrever a query
-        String sql = "INSERT INTO tb_funcionario(cpf, nome) VALUES ( '38555985846','teste');";
+        String sql = "INSERT INTO tb_funcionario(cpf, nome) VALUES ( '" + funcionario.getCpf() + " ','" + funcionario.getNome() + "');";
         Map<String, Object> params = new HashMap<>();
         //executar a query
-        jdbcTemplate.update(sql,params);
+        jdbcTemplate.update(sql, params);
     }
 }
