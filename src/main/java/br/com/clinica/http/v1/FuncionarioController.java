@@ -25,4 +25,21 @@ public class FuncionarioController {
     public void salvar(@RequestBody Funcionario funcionario) {
         service.salvar(funcionario);
     }
+
+    @PutMapping("/{id}/{cpf}/{nomeFuncionario}")
+    @ResponseStatus(HttpStatus.OK)
+    public void update(
+            @PathVariable("id") Long id,
+            @PathVariable("nomeFuncionario") String nomeFuncionario,
+            @PathVariable("cpf") String cpf) {
+        service.update(nomeFuncionario, cpf, id);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(
+            @PathVariable("id") long id) {
+        service.delete(id);
+    }
+
 }

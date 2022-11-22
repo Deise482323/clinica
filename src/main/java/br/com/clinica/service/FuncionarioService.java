@@ -14,4 +14,12 @@ public class FuncionarioService {
     public void salvar(Funcionario funcionario) {
         repository.salvar(funcionario);
     }
+
+    public void update(String cpf, String nomeFuncionario, Long id) {
+        repository.update(cpf, nomeFuncionario, id);
+    }
+
+    public void delete(Long id) {
+        repository.delete(id);
+    }
 }

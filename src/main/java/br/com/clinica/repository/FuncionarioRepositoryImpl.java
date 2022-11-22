@@ -21,4 +21,21 @@ public class FuncionarioRepositoryImpl {
         //executar a query
         jdbcTemplate.update(sql, params);
     }
+
+    public void update(String nomeFuncionario, String cpf, Long id) {
+        String sql = "UPDATE tb_funcionario SET nome = '" + nomeFuncionario + "',  cpf = " + cpf + " WHERE id = " + id + ";";
+        System.out.println(sql);
+        Map<String, Object> params = new HashMap<>();
+        //executar a query
+        jdbcTemplate.update(sql, params);
+    }
+
+    public void delete(Long id) {
+        String sql = "DELETE FROM tb_funcionario WHERE id = " + id + ";";
+        System.out.println(sql);
+        Map<String, Object> params = new HashMap<>();
+        //executar a query
+        jdbcTemplate.update(sql, params);
+    }
+
 }
